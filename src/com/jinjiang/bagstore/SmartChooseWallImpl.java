@@ -7,9 +7,9 @@ public class SmartChooseWallImpl implements ChooseWall {
     }
 
     @Override
-    public LockerWall chooseLockerWall(List<LockerWall> walls) {
-        LockerWall firstLockerWall = walls.get(0);
-        for (LockerWall lockerWall : walls) {
+    public Lockers chooseLockerWall(List<Lockers> walls) {
+        Lockers firstLockerWall = walls.get(0);
+        for (Lockers lockerWall : walls) {
             if (lockerWall.getEmptySize() > firstLockerWall.getEmptySize()) {
                 firstLockerWall = lockerWall;
             }

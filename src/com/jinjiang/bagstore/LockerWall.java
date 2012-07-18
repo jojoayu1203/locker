@@ -3,7 +3,7 @@ package com.jinjiang.bagstore;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class LockerWall {
+public class LockerWall implements Lockers {
     private Map<Ticket, Bag> bags = new ConcurrentHashMap<Ticket, Bag>();
     private int capacity;
 
@@ -11,6 +11,7 @@ public class LockerWall {
         this.capacity = capacity;
     }
 
+    @Override
     public Ticket put(Bag bag) {
         if (isFull()) {
             throw new LockerWallIsFullException();
@@ -20,6 +21,7 @@ public class LockerWall {
         return key;
     }
 
+    @Override
     public Bag pop(Ticket storeKey) {
         if (!bags.containsKey(storeKey)) {
             return Bag.NullBag;
@@ -37,7 +39,16 @@ public class LockerWall {
         return bags.containsKey(key);
     }
 
-	public int getEmptySize() {
+	@Override
+    public int getEmptySize() {
 		return  this.capacity - bags.size();
 	}
+
+    @Override
+    public double getFullRate() {
+        if(capacity==0) {
+            return 1;
+        }
+        return new Double(bags.size())/new Double(this.capacity);
+    }
 }

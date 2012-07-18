@@ -11,5 +11,5 @@ import java.util.List;
  */
 public interface ChooseWall {
 
-    public LockerWall chooseLockerWall(List<LockerWall> walls);
+    public Lockers chooseLockerWall(List<Lockers> walls);
 }

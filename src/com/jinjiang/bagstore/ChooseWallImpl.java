@@ -6,9 +6,9 @@ public class ChooseWallImpl implements ChooseWall {
     public ChooseWallImpl() {
     }
 
-    public LockerWall chooseLockerWall(List<LockerWall> walls) {
-        LockerWall lockerWall = walls.get(0);
-        for (LockerWall store : walls) {
+    public Lockers chooseLockerWall(List<Lockers> walls) {
+        Lockers lockerWall = walls.get(0);
+        for (Lockers store : walls) {
             if (!store.isFull()) {
                 lockerWall = store;
                 break;
