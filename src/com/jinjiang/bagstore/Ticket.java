@@ -1,4 +1,7 @@
 package com.jinjiang.bagstore;
 
-public class Ticket {
+import java.io.Serializable;
+
+public class Ticket implements Serializable {
+
 }
