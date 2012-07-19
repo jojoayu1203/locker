@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="locker" default="all" basedir="." >
+    <property name="src.dir" value="src" />
+    <property name="test.dir" value="test" />
+    <property name="lib.dir" value="lib" />
+    <property name="build.dir" value="out/target" />
+    <property name="classes.dir" value="${build.dir}/classes" />
+    <property name="reports.junit.dir" value="out/junit_reports" />
+
+    <path id="classpath">
+        <fileset dir="${lib.dir}" includes="*.jar" />
+    </path>
+
+    <target name="clean">
+        <delete dir="${build.dir}" />
+        <delete dir="${reports.junit.dir}" />
+        <delete dir="${classes.dir}" />
+    </target>
+
+    <target name="init">
+        <mkdir dir="${build.dir}" />
+        <mkdir dir="${classes.dir}" />
+        <mkdir dir="${reports.junit.dir}" />
+    </target>
+
+    <target name="compile" depends="init">
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath" fork="true" debug="true" includeAntRuntime="false" />
+        <javac srcdir="${test.dir}" destdir="${classes.dir}" classpathref="classpath" fork="true" debug="true" includeAntRuntime="false" />
+    </target>
+
+    <target name="run-tests" depends="compile">
+        <taskdef name="junit" classname="org.apache.tools.ant.taskdefs.optional.junit.JUnitTask">
+            <classpath>
+                <path refid="classpath" />
+            </classpath>
+        </taskdef>
+
+        <junit fork="yes" dir="${basedir}" failureProperty="test.failed" >
+            <classpath location="${classes.dir}" />
+            <classpath refid="classpath" />
+            <formatter type="xml" />
+            <batchtest todir="${reports.junit.dir}">
+                <fileset dir="${test.dir}">
+                    <include name="**/*Test.java" />
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+
+    <target name="judge.failed">
+        <fail if="test.failed"  />
+    </target>
+
+    <target name="all" depends="clean,compile,run-tests,judge.failed" />
+
+</project>

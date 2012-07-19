@@ -1,6 +1,5 @@
-package test.com.jinjiang.bagstore;
+package com.jinjiang.bagstore;
 
-import com.jinjiang.bagstore.*;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -39,7 +38,7 @@ public class RateChooseWallTest {
         bLockerWall.put(new Bag());
         lockerWalls.add(bLockerWall);
         RateChooseWallImpl rateChooseWall = new RateChooseWallImpl();
-        Assert.assertEquals(aLockerWall,rateChooseWall.chooseLockerWall(lockerWalls));
+        Assert.assertEquals(aLockerWall, rateChooseWall.chooseLockerWall(lockerWalls));
     }
 
     @Test
@@ -55,7 +54,7 @@ public class RateChooseWallTest {
         lockerWalls.add(cLockerWall);
 
         RateChooseWallImpl rateChooseWall = new RateChooseWallImpl();
-        Assert.assertEquals(cLockerWall,rateChooseWall.chooseLockerWall((List<Lockers>) lockerWalls));
+        Assert.assertEquals(cLockerWall, rateChooseWall.chooseLockerWall((List<Lockers>) lockerWalls));
     }
 
     @Test

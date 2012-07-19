@@ -9,7 +9,7 @@ import java.util.List;
  * Time: 2:02 PM
  * To change this template use File | Settings | File Templates.
  */
-public class RateChooseWallImpl implements ChooseWall{
+public class RateChooseWallImpl implements ChooseWall {
     @Override
     public Lockers chooseLockerWall(List<Lockers> walls) {
         Lockers firstLockerWall = walls.get(0);
@@ -18,7 +18,7 @@ public class RateChooseWallImpl implements ChooseWall{
                 firstLockerWall = lockerWall;
             }
         }
-        if(firstLockerWall.isFull()) {
+        if (firstLockerWall.isFull()) {
             return null;
         }
         return firstLockerWall;

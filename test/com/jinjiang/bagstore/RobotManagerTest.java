@@ -1,6 +1,5 @@
-package test.com.jinjiang.bagstore;
+package com.jinjiang.bagstore;
 
-import com.jinjiang.bagstore.*;
 import junit.framework.Assert;
 import org.junit.Test;
 
@@ -18,10 +17,10 @@ public class RobotManagerTest {
 
     @Test
     public void should_be_able_to_store_bag() {
-         List<Robot> robots = initData();
-         RobotManager manager = new RobotManager(robots,new LockerWall(1));
-         Ticket actualKey = manager.put(new Bag());
-         Assert.assertNotNull(actualKey);
+        List<Robot> robots = initData();
+        RobotManager manager = new RobotManager(robots, new LockerWall(1));
+        Ticket actualKey = manager.put(new Bag());
+        Assert.assertNotNull(actualKey);
     }
 
     @Test(expected = LockerWallIsFullException.class)
@@ -33,18 +32,18 @@ public class RobotManagerTest {
         robots.add(robot);
         robots.add(smartRobot);
         robots.add(rateRobot);
-        RobotManager manager = new RobotManager(robots,new LockerWall(0));
+        RobotManager manager = new RobotManager(robots, new LockerWall(0));
         manager.put(new Bag());
     }
 
     @Test
     public void should_be_return_bag_when_given_ticket() {
         List<Robot> robots = initData();
-        RobotManager manager = new RobotManager(robots,new LockerWall(1));
-        Bag bag =  new Bag();
+        RobotManager manager = new RobotManager(robots, new LockerWall(1));
+        Bag bag = new Bag();
         Ticket actualKey = manager.put(bag);
         Bag bagFromManager = manager.pop(actualKey);
-        Assert.assertEquals(bag ,bagFromManager);
+        Assert.assertEquals(bag, bagFromManager);
 
     }
 

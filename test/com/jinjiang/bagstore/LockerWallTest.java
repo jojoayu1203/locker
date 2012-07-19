@@ -1,14 +1,9 @@
-package test.com.jinjiang.bagstore;
+package com.jinjiang.bagstore;
 
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import com.jinjiang.bagstore.Bag;
-import com.jinjiang.bagstore.LockerWall;
-import com.jinjiang.bagstore.LockerWallIsFullException;
-import com.jinjiang.bagstore.Ticket;
 
 public class LockerWallTest {
     private LockerWall lockerWall;

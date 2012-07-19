@@ -39,16 +39,16 @@ public class LockerWall implements Lockers {
         return bags.containsKey(key);
     }
 
-	@Override
+    @Override
     public int getEmptySize() {
-		return  this.capacity - bags.size();
-	}
+        return this.capacity - bags.size();
+    }
 
     @Override
     public double getFullRate() {
-        if(capacity==0) {
+        if (capacity == 0) {
             return 1;
         }
-        return new Double(bags.size())/new Double(this.capacity);
+        return new Double(bags.size()) / new Double(this.capacity);
     }
 }

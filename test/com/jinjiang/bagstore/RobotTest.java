@@ -1,12 +1,8 @@
-package test.com.jinjiang.bagstore;
+package com.jinjiang.bagstore;
 
-import com.jinjiang.bagstore.*;
 import org.junit.Test;
 
 import junit.framework.Assert;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class RobotTest {
 
@@ -38,7 +34,7 @@ public class RobotTest {
     @Test
     public void should_be_able_to_store_bag() {
         Bag bag = new Bag();
-        Robot robot = new Robot(new ChooseWallImpl(), new LockerWall(10),new LockerWall(5));
+        Robot robot = new Robot(new ChooseWallImpl(), new LockerWall(10), new LockerWall(5));
         Ticket actualKey = robot.put(bag);
         Assert.assertNotNull(actualKey);
     }
@@ -49,7 +45,7 @@ public class RobotTest {
         Robot robot = new Robot(new ChooseWallImpl(), new LockerWall(10));
         Ticket key = robot.put(bag);
         Bag bagFromStore = robot.pop(key);
-        Assert.assertSame(bag,bagFromStore);
+        Assert.assertSame(bag, bagFromStore);
 
     }
 
@@ -68,7 +64,7 @@ public class RobotTest {
 
     @Test
     public void should_be_9_when_given_10_capacity_put_1() {
-        Lockers robot = new Robot(new ChooseWallImpl(), new LockerWall(2),new LockerWall(1));
+        Lockers robot = new Robot(new ChooseWallImpl(), new LockerWall(2), new LockerWall(1));
         Lockers smartRobot = new Robot(new SmartChooseWallImpl(), new LockerWall(1), new LockerWall(1));
         Lockers rateRobot = new Robot(new RateChooseWallImpl(), new LockerWall(3));
         Lockers lockers = new Robot(new ChooseWallImpl(), robot, smartRobot, rateRobot, new LockerWall(2));

@@ -2,11 +2,11 @@ package com.jinjiang.bagstore;
 
 import java.util.*;
 
-public class Robot implements Lockers{
+public class Robot implements Lockers {
     private List<Lockers> lockerses;
     private ChooseWall chooseWall;
 
-	public Robot(ChooseWall chooseWall, Lockers... lockerses) {
+    public Robot(ChooseWall chooseWall, Lockers... lockerses) {
         this.chooseWall = chooseWall;
         this.lockerses = new ArrayList<Lockers>(lockerses.length);
 
@@ -17,12 +17,11 @@ public class Robot implements Lockers{
 
     public Ticket put(Bag bag) {
         Lockers lockerWall = chooseWall.chooseLockerWall(lockerses);
-        if(lockerWall == null) {
+        if (lockerWall == null) {
             throw new LockerWallIsFullException("all wall is full!");
         }
         return lockerWall.put(bag);
     }
-
 
 
     public Bag pop(Ticket key) {
@@ -37,8 +36,8 @@ public class Robot implements Lockers{
     @Override
     public int getEmptySize() {
         int total = 0;
-        for(Lockers lockers : lockerses) {
-            total = total+lockers.getEmptySize();
+        for (Lockers lockers : lockerses) {
+            total = total + lockers.getEmptySize();
         }
         return total;
     }
@@ -55,8 +54,8 @@ public class Robot implements Lockers{
 
     public boolean isFull() {
         for (Lockers lockerWall : lockerses) {
-            if(!lockerWall.isFull()){
-                return  false;
+            if (!lockerWall.isFull()) {
+                return false;
             }
         }
         return true;

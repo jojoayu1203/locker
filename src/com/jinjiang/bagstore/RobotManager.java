@@ -1,6 +1,5 @@
 package com.jinjiang.bagstore;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import java.util.List;
 
@@ -18,21 +17,21 @@ public class RobotManager {
     private List<Robot> robots;
 
     public RobotManager(List<Robot> robots, LockerWall... lockerWalls) {
-        selfRobot = new Robot(new ChooseWallImpl(),lockerWalls);
+        selfRobot = new Robot(new ChooseWallImpl(), lockerWalls);
         this.robots = robots;
         robots.add(selfRobot);
     }
 
     public Ticket put(Bag bag) {
         Ticket ticket = null;
-        if(isFull()) {
+        if (isFull()) {
             throw new LockerWallIsFullException("All lockerWall is full");
         }
-        for(Robot robot : robots) {
-            try{
+        for (Robot robot : robots) {
+            try {
                 ticket = robot.put(bag);
                 break;
-            }catch (LockerWallIsFullException e) {
+            } catch (LockerWallIsFullException e) {
             }
         }
         return ticket;
@@ -40,7 +39,7 @@ public class RobotManager {
 
     private boolean isFull() {
         for (Robot robot : robots) {
-            if(!robot.isFull()) {
+            if (!robot.isFull()) {
                 return false;
             }
         }
@@ -48,9 +47,9 @@ public class RobotManager {
     }
 
     public Bag pop(Ticket ticket) {
-        for(Robot robot : robots) {
+        for (Robot robot : robots) {
             Bag bag = robot.pop(ticket);
-            if(bag != Bag.NullBag)
+            if (bag != Bag.NullBag)
                 return bag;
 
         }
