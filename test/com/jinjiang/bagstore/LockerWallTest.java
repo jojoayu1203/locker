@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class LockerWallTest {
+    /*jenkins test*/
     private LockerWall lockerWall;
 
     @Before
